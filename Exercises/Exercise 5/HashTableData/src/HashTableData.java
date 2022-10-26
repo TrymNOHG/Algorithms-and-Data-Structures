@@ -7,11 +7,14 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * @author Leon Egeberg Hesthaug, Eirik Elvestad, og Trym Hamer Gudvangen
+ */
 public class HashTableData {
 
     public static void main(String[] args) {
 
-//        textKeyExercise();
+        textKeyExercise();
 
         intKeyExercise();
 
@@ -46,13 +49,17 @@ public class HashTableData {
         String person = input.nextLine();
 
         System.out.println("Eksisterer denne personen i tabellen: " + hashTable.existsInTable(person));
+
+        System.out.println("Hvem ønsker du å finne?");
+        person = input.nextLine();
+        System.out.println("Eksisterer denne personen i tabellen: " + hashTable.existsInTable(person) + "\n");
     }
 
     private static void intKeyExercise(){
 
         HashTable hashTable = new HashTable(10000000);
         HashMap<Integer, Integer> hashMap = new HashMap<>(10000000);
-        NumberArray numberArray = new NumberArray(10000000, hashTable.getHashTableSize() * 50);
+        NumberArray numberArray = new NumberArray(10000000, hashTable.getHashTableSize() * 100);
 
 
         long startTime = System.nanoTime();
@@ -60,8 +67,15 @@ public class HashTableData {
         for(int randomNum : numberArray.getUnorderedArr()){
             hashTable.add(randomNum);
         }
+
         long endTime = System.nanoTime();
         final long ourTimeTaken = endTime - startTime;
+
+        System.out.println("Antall kollisjoner: " + hashTable.getCollisions());
+        System.out.println("Antall kollisjoner per person: " + hashTable.collisionPerPerson());
+
+        System.out.println("Lastfaktor: " + hashTable.findLoadFactor());
+        System.out.println("Tid for vår hash: " + ourTimeTaken/1000000 + " ms");
 
         startTime = System.nanoTime();
         for(int randomNum : numberArray.getUnorderedArr()){
@@ -70,13 +84,7 @@ public class HashTableData {
         endTime = System.nanoTime();
         final long javaTimeTaken = endTime - startTime;
 
-        System.out.println("Antall kollisjoner: " + hashTable.getCollisions());
-        System.out.println("Antall kollisjoner per person: " + hashTable.collPerPers());
-
-        System.out.println("Lastfaktor: " + hashTable.findLoadFactor());
-
-        System.out.println("Tid for vår hash: " + ourTimeTaken + " ns");
-        System.out.println("Tid for Java HashMap: " + javaTimeTaken + " ns");
+        System.out.println("Tid for Java HashMap: " + javaTimeTaken/1000000  + " ms");
         
     }
 
@@ -105,14 +113,6 @@ class LinkedHashTable{
         }
         return hashVal;
     }
-
-//    public int stringToInt(String word){
-//        int number = 0;
-//        for(int i = 0; i < word.length(); i++){
-//            number = (number + word.charAt(i)) * 11;
-//        }
-//        return number;
-//    }
 
     public void add(Object obj){
         int hashedObject = hashObject(obj);
@@ -403,11 +403,86 @@ class HashTable{
 
     private int collisions = 0;
     private final int hashTableSize;
-    private final Object[] hashTable;
+    private final int[] hashTable;
     private final int numElements;
 
     public HashTable(int numInput) {
-        this.hashTableSize = nextPrime((int) (numInput * 1.25)); // 25% overhead
+        this.hashTableSize = nextPrime((int) (numInput * 1.35)); // 35% overhead
+        this.hashTable = new int[hashTableSize];
+        this.numElements = numInput;
+    }
+
+    public int hashNumber(int number){
+        if (number % this.hashTable.length < 0) return (number % this.hashTable.length) + this.hashTable.length;
+        return number % this.hashTable.length;
+    }
+
+    public int hashNumber2(int number){
+        if (number % this.hashTable.length < 0) return (number % (this.hashTable.length - 1)) + this.hashTable.length;
+        return (number % (this.hashTable.length - 1)) + 1;
+    }
+
+    public void add(int number){
+
+        int hashedNum = hashNumber(number);
+        if(hashTable[hashedNum] == 0) this.hashTable[hashedNum] = number;
+        else hashTable[probe(hashedNum)] = number;
+    }
+
+    private int probe(int number){
+        int jumpVal = hashNumber2(number);
+        while (this.hashTable[number] != 0){
+            this.collisions++;
+            number = hashNumber(number + jumpVal);
+        }
+        return number;
+    }
+
+    private int nextPrime(int numSize){
+        while(!isPrime(numSize)) numSize++;
+        return numSize;
+    }
+
+    private boolean isPrime(int num){
+        for(int i = 2; i < Math.sqrt(num) + 1; i++){
+            if(num % i == 0) return false;
+        }
+        return true;
+    }
+
+    public double findLoadFactor(){
+        return (double) numElements/ this.hashTable.length;
+    }
+
+    public double collisionPerPerson(){
+        return (double) collisions / numElements;
+    }
+
+    public int getCollisions() {
+        return collisions;
+    }
+
+    public int getHashTableSize() {
+        return hashTableSize;
+    }
+
+    public int getNumElements() {
+        return numElements;
+    }
+}
+
+/**
+ * En mer generell dobbel hash metode for objekter
+ */
+class GeneralHashTable{
+
+    private int collisions = 0;
+    private final int hashTableSize;
+    private final Object[] hashTable;
+    private final int numElements;
+
+    public GeneralHashTable(int numInput) {
+        this.hashTableSize = nextPrime((int) (numInput * 1.3)); // 25% overhead
         this.hashTable = new Object[hashTableSize];
         this.numElements = numInput;
     }
@@ -423,6 +498,9 @@ class HashTable{
 
     public int hashObject2(Object object){
         String objectString = object.toString();
+        if(Integer.valueOf(objectString) == 0 ||Integer.valueOf(objectString) == this.hashTable.length){
+            objectString = String.valueOf(this.hashTable.length/2);
+        }
         int hashVal = 0;
         for(int i = 0; i < objectString.length(); i++){
             hashVal = (hashVal + objectString.charAt(i)) * 43;
@@ -436,22 +514,10 @@ class HashTable{
         int hashIndex = getHashTableIndex(hashedObject);
 
         if(hashTable[hashIndex] == null) this.hashTable[hashIndex] = obj;
-        else{
-            hashTable[probe(hashIndex, obj)] = obj;
-        }
-
+        else hashTable[probe(hashIndex, obj)] = obj;
     }
 
-//    private int probe(int index, Object obj, int numCollisions){
-//        if(numCollisions == this.hashTableSize - 1) return -1;
-//        this.collisions++;
-//       //Make recursive till it finds an appropriate space
-//        int newKey = getHashTableIndex(index + hashObject2(obj));
-//        if(this.hashTable[newKey] == null) return newKey;
-//        else return probe(newKey, obj, numCollisions++);
-//    }
-
-        private int probe(int index, Object obj){
+    private int probe(int index, Object obj){
         int jumpVal = hashObject2(obj);
         while (this.hashTable[index] != null){
             this.collisions++;
@@ -459,19 +525,6 @@ class HashTable{
         }
         return index;
     }
-
-//    public Nodule get(String word){
-//        int hashCode = stringToInt(word);
-//        int hashIndex = moduloHash(hashCode);
-//
-//        DoubleLinkedList<?> wordList = this.hashTable[hashIndex];
-//        if(wordList == null) return null;
-//        return wordList.getByValue(word);
-//    }
-
-//    public boolean existsInTable(String word){
-//        return this.get(word) != null;
-//    }
 
 
     private int nextPrime(int numSize){
@@ -491,19 +544,11 @@ class HashTable{
         return key % this.hashTable.length;
     }
 
-//    public int indicesFilled(){
-//        int indicesFilled = 0;
-//        for(DoubleLinkedList<?> list : this.hashTable){
-//            if(list != null) indicesFilled++;
-//        }
-//        return indicesFilled;
-//    }
-//
     public double findLoadFactor(){
         return (double) numElements/ this.hashTable.length;
     }
 
-    public double collPerPers(){
+    public double collisionPerPerson(){
         return (double) collisions / numElements;
     }
 
@@ -540,7 +585,7 @@ class NumberArray{
     public void createRandomArr(int sizeOfArr, int randomBound){
         this.unorderedArr = new int[sizeOfArr];
         for (int i = 0; i < sizeOfArr; i++) {
-            this.unorderedArr[i] = random.nextInt(randomBound);
+            this.unorderedArr[i] = random.nextInt(1, randomBound);
         }
     }
 
