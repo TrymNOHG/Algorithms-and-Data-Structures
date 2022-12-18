@@ -1,0 +1,32 @@
+Tekstsøk, Datakompresjon
+
+
+  • Fritekstsøk i dokumenter, nettsider og lignende
+
+  • Fritekstsøk i databaser
+
+  • Søkemotorer
+
+  • Søke etter repeterte strenger for datakompresjon
+
+  Tekst: rabarbra     (lengde n)
+
+  Søkeord: bra     (lengde m)
+
+  Skyv søkeordet langs teksten, se om det passer
+
+
+    • tegn som passer, vises med fet skrift
+
+    • første feil med kursiv
+
+    • dobbeltløkke for n-m posisjoner, og m tegn i søkeordet.
+
+
+
+  Hele greia, O\left(n\cdot m\right),\Omega\left(n\right)
+
+
+  Forsøk  | r  | a  | b  | a  | r  | b  | r  | a
+----------+----+----+----+----+----+----+----+----
+    0     | b  | r  | a  |    |    |    |    |

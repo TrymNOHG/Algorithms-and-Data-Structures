@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5f84144c-3fc6-4d3e-9a44-7f7f94965497" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Exercise 5/HashTableData/out/production/HashTableData/DoubleLinkedList.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise 5/HashTableData/out/production/HashTableData/DoubleLinkedList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exercise 5/HashTableData/out/production/HashTableData/FileHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise 5/HashTableData/out/production/HashTableData/FileHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exercise 5/HashTableData/out/production/HashTableData/HashTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise 5/HashTableData/out/production/HashTableData/HashTable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exercise 5/HashTableData/out/production/HashTableData/HashTableData.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise 5/HashTableData/out/production/HashTableData/HashTableData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exercise 5/HashTableData/out/production/HashTableData/LinkedHashTable.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise 5/HashTableData/out/production/HashTableData/LinkedHashTable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exercise 5/HashTableData/out/production/HashTableData/Nodule.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise 5/HashTableData/out/production/HashTableData/Nodule.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exercise 5/HashTableData/out/production/HashTableData/NumberArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise 5/HashTableData/out/production/HashTableData/NumberArray.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Exercise 5/HashTableData/src/HashTableData.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Exercise 5/HashTableData/src/HashTableData.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2FujNtGMmQbPxjr8MjP2D9Hlfoq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5f84144c-3fc6-4d3e-9a44-7f7f94965497" name="Changes" comment="" />
+      <created>1665348827253</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1665348827253</updated>
+      <workItem from="1665348828915" duration="933000" />
+      <workItem from="1665350212440" duration="631000" />
+      <workItem from="1665350875162" duration="2319000" />
+      <workItem from="1665480167287" duration="4014000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
